@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Inquiry &amp; Contact — Sweet Crust Bakery</title>
+<meta name="description" content="Send an order inquiry to Sweet Crust Bakery. Custom cakes, bread platters, event orders and weekly subscriptions. We reply within one day.">
+<meta property="og:title" content="Order Inquiry — Sweet Crust Bakery">
+<meta property="og:description" content="Custom cakes, bread platters and event orders. Tell us what you need.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥐</text></svg>">
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-mark">🥐</span><span class="brand-text">Sweet<em>Crust</em></span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">Our Story</a>
+      <a href="contact.html" class="nav-cta active">Order Inquiry</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <span class="eyebrow">We reply within 24 hours</span>
+  <h1>Order Inquiry</h1>
+  <p>Cakes, platters, bulk bread or a standing weekly order — fill this in and we'll get back to you with availability and a quote.</p>
+</section>
+
+<section class="section" style="padding-top:20px">
+  <div class="contact-grid">
+    <div class="form-card reveal">
+      <form id="inquiryForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Your name *</label>
+            <input type="text" id="name" name="name" required placeholder="Jane Doe">
+          </div>
+          <div class="field">
+            <label for="contact">Email or phone *</label>
+            <input type="text" id="contact" name="contact" required placeholder="jane@email.com">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="type">What's it for?</label>
+            <select id="type" name="type">
+              <option>Custom cake</option>
+              <option>Bread platter / event</option>
+              <option>Pastry box</option>
+              <option>Weekly standing order</option>
+              <option>Wholesale / café supply</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Date needed</label>
+            <input type="date" id="date" name="date">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="qty">Quantity / size</label>
+            <input type="text" id="qty" name="qty" placeholder="e.g. 2 loaves, 12 croissants, 8-inch cake">
+          </div>
+          <div class="field">
+            <label for="budget">Budget (optional)</label>
+            <input type="text" id="budget" name="budget" placeholder="$">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Tell us more *</label>
+          <textarea id="message" name="message" required placeholder="Flavours, dietary needs, decoration ideas, pickup or delivery…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%">Send inquiry</button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+
+    <aside class="info-card reveal">
+      <h3>Visit the bakery</h3>
+      <div class="info-row"><span class="ic">📍</span><div><h5>Address</h5><p>42 Mill Lane, Old Town Quarter</p></div></div>
+      <div class="info-row"><span class="ic">🕖</span><div><h5>Opening hours</h5><p>Tue–Fri 7:00–18:00<br>Sat–Sun 7:00–14:00<br>Monday closed</p></div></div>
+      <div class="info-row"><span class="ic">✉️</span><div><h5>Email</h5><p>hello@sweetcrust.example</p></div></div>
+      <div class="info-row"><span class="ic">📞</span><div><h5>Phone</h5><p>(555) 014-2288</p></div></div>
+      <div class="info-row"><span class="ic">⏱️</span><div><h5>Lead time</h5><p>Cakes: 3 days · Platters: 48h<br>Bread: same week</p></div></div>
+      <div class="map-badge">🗺️ Street parking on Mill Lane. Two minutes from Old Town station.</div>
+    </aside>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><div class="brand"><span class="brand-mark">🥐</span><span class="brand-text">Sweet<em>Crust</em></span></div><p>Artisan bakery. Baked fresh every morning since 1998.</p></div>
+    <div class="footer-col"><h4>Visit</h4><p>42 Mill Lane<br>Old Town Quarter</p></div>
+    <div class="footer-col"><h4>Hours</h4><p>Tue–Fri 7:00–18:00<br>Sat–Sun 7:00–14:00<br>Mon closed</p></div>
+    <div class="footer-col"><h4>Contact</h4><p><a href="contact.html">Order inquiry</a><br>hello@sweetcrust.example<br>(555) 014-2288</p></div>
+  </div>
+  <div class="footer-bottom"><p>© <span id="yr"></span> Sweet Crust Bakery. All rights reserved.</p></div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+document.getElementById('inquiryForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const msg = document.getElementById('formMsg');
+  const name = document.getElementById('name').value.trim();
+  const contact = document.getElementById('contact').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if(!name || !contact || !message){
+    msg.className = 'form-msg ok';
+    msg.textContent = '⚠️ Please fill in your name, contact details and a short message.';
+    return;
+  }
+  // Front-end only demo: no backend attached.
+  msg.className = 'form-msg ok';
+  msg.textContent = '✅ Thanks ' + name + '! Your inquiry has been noted. (Demo form — connect a backend or mail service to go live.)';
+  this.reset();
+});
+</script>
+</body>
+</html>
