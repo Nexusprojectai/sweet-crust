@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu &amp; Prices — Sweet Crust Bakery</title>
+<meta name="description" content="Full menu of Sweet Crust Bakery: sourdough, rye, pastries, cakes, cookies and savoury bakes with prices. Freshly baked every morning.">
+<meta property="og:title" content="Menu &amp; Prices — Sweet Crust Bakery">
+<meta property="og:description" content="Sourdough, croissants, cakes and more — see our full menu with prices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥐</text></svg>">
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-mark">🥐</span><span class="brand-text">Sweet<em>Crust</em></span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="menu.html" class="active">Menu</a>
+      <a href="about.html">Our Story</a>
+      <a href="contact.html" class="nav-cta">Order Inquiry</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <span class="eyebrow">Fresh daily · while it lasts</span>
+  <h1>Our Menu</h1>
+  <p>Everything below is baked in-house from scratch. Breads come out at 7am, pastries at 7:30am, cakes by order. Prices include tax.</p>
+  <div class="filters" id="filters"></div>
+</section>
+
+<section class="section" style="padding-top:20px">
+  <div class="grid grid-4" id="menuGrid"></div>
+  <p class="menu-note">Allergen information available in-store. We handle wheat, dairy, eggs, nuts and sesame in our kitchen.</p>
+  <div class="center-cta"><a href="contact.html" class="btn btn-primary">Order for pickup →</a></div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand"><span class="brand-mark">🥐</span><span class="brand-text">Sweet<em>Crust</em></span></div>
+      <p>Artisan bakery. Baked fresh every morning since 1998.</p>
+    </div>
+    <div class="footer-col"><h4>Visit</h4><p>42 Mill Lane<br>Old Town Quarter</p></div>
+    <div class="footer-col"><h4>Hours</h4><p>Tue–Fri 7:00–18:00<br>Sat–Sun 7:00–14:00<br>Mon closed</p></div>
+    <div class="footer-col"><h4>Contact</h4><p><a href="contact.html">Order inquiry</a><br>hello@sweetcrust.example<br>(555) 014-2288</p></div>
+  </div>
+  <div class="footer-bottom"><p>© <span id="yr"></span> Sweet Crust Bakery. All rights reserved.</p></div>
+</footer>
+
+<script src="menu-data.js"></script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+
+const grid = document.getElementById('menuGrid');
+const cats = ['All', ...new Set(MENU.map(m => m.cat))];
+let active = 'All';
+const fbox = document.getElementById('filters');
+
+function renderFilters(){
+  fbox.innerHTML = cats.map(c => `<button class="filter${c===active?' active':''}" data-c="${c}">${c}</button>`).join('');
+  fbox.querySelectorAll('.filter').forEach(b => b.addEventListener('click', () => { active = b.dataset.c; renderFilters(); render(); }));
+}
+function render(){
+  const items = active==='All' ? MENU : MENU.filter(m => m.cat===active);
+  grid.innerHTML = items.map(p => `
+    <article class="card reveal">
+      <div class="card-img"><img src="${p.img}" alt="${p.name}" loading="lazy"><span class="tag">${p.cat}</span></div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <div class="card-foot"><span class="price">$${p.price.toFixed(2)}</span><span class="unit">${p.unit}</span></div>
+      </div>
+    </article>`).join('');
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.1});
+  grid.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+renderFilters(); render();
+</script>
+</body>
+</html>
