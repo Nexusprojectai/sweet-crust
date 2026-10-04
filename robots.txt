@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nexusprojectai.github.io/sweet-crust/sitemap.xml
